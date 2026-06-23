@@ -5,8 +5,10 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 import { LibrosModule } from './libros/libros.module';
 import { ValoracionesModule } from './valoraciones/valoraciones.module';
 import { Usuario } from './usuarios/usuario.entity';
+
 @Module({
   imports: [
+    TypeOrmModule.forFeature([Usuario]),
     TypeOrmModule.forRoot({
       entities: [Usuario],
       type: 'mysql',

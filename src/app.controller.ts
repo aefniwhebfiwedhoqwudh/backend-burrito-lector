@@ -3,6 +3,7 @@ import { AppService } from './app.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Usuario } from './usuarios/usuario.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Controller()
 export class AppController {
