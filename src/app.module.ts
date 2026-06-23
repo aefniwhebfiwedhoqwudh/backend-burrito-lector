@@ -9,11 +9,11 @@ import { ValoracionesModule } from './valoraciones/valoraciones.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'mysql-20540ea8-alejandroramirez7981-2f36.l.aivencloud.com',
-      port: 20523,
-      username: 'avnadmin',
-      password: 'AVNS_96GhXbWzge3g0JN80Xx',
-      database: 'defaultdb',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       autoLoadEntities: true,
       synchronize: true,
       connectTimeout: 30000,
