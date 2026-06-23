@@ -3,7 +3,6 @@ import { AppService } from './app.service';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Usuario } from './usuarios/usuario.entity';
-import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Controller()
 export class AppController {
@@ -18,9 +17,14 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('make-admin/:correo')
-  async makeAdmin(@Param('correo') correo: string) {
-    await this.usuariosRepo.update({ correo }, { rol: 'admin' });
+  @Get('usuarios')
+  async getUsuarios() {
+    return this.usuariosRepo.find();
+  }
+
+  @Get('make-admin/:id')
+  async makeAdmin(@Param('id') id: number) {
+    await this.usuariosRepo.update(id, { rol: 'admin' });
     return { mensaje: 'Usuario actualizado a admin' };
   }
 }
