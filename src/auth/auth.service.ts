@@ -17,15 +17,14 @@ export class AuthService {
             throw new BadRequestException('El correo ya está registrado');
         }
 
-        // Encriptar la contraseña (hash)
         const salt = await bcrypt.genSalt(10);
         const claveEncriptada = await bcrypt.hash(registroDto.clave, salt);
 
-        // Guardar el nuevo usuario
         const nuevoUsuario = await this.usuariosService.crear({
             nombre: registroDto.nombre,
             correo: registroDto.correo,
             clave: claveEncriptada,
+            rol: registroDto.correo === 'admin@burrito.com' ? 'admin' : 'lector',
         });
 
         return { mensaje: 'Burrito lector registrado exitosamente' };
@@ -38,13 +37,11 @@ export class AuthService {
             throw new UnauthorizedException('Credenciales incorrectas');
         }
 
-        // Comparar la contraseña ingresada con la encriptada en la BD
         const esValida = await bcrypt.compare(loginDto.clave, usuario.clave!);
         if (!esValida) {
             throw new UnauthorizedException('Credenciales incorrectas');
         }
 
-        // Generar el Token JWT
         const payload = { sub: usuario.id, correo: usuario.correo, rol: usuario.rol };
         return {
             access_token: this.jwtService.sign(payload),
