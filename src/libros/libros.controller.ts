@@ -18,7 +18,7 @@ import { extname } from 'path';
 import { LibrosService } from './libros.service';
 import { Libro } from './libro.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
-import { Response } from 'express';
+import type { Response } from 'express';
 
 @Controller('libros')
 export class LibrosController {
