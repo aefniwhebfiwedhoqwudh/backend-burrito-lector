@@ -9,15 +9,17 @@ import { ValoracionesModule } from './valoraciones/valoraciones.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'mysql-3966d4be-garciabeltranalanhiram-116f.a.aivencloud.com',
-      port: 15231,
+      host: 'mysql-20540ea8-alejandroramirez7981-2f36.l.aivencloud.com',
+      port: 20523,
       username: 'avnadmin',
-      password: 'AVNS_kwbq0PolDI38rfbvhKv',
+      password: 'AVNS_96GhXbWzge3g0JN80Xx',
       database: 'defaultdb',
       autoLoadEntities: true,
-      synchronize: true, // Crea las tablas automáticamente en la nube
+      synchronize: true,
+      connectTimeout: 30000,
       ssl: {
-        rejectUnauthorized: false, // Obligatorio para que Aiven permita la conexión
+        rejectUnauthorized: false,
+        minVersion: 'TLSv1.2'
       },
     }),
     AuthModule,
