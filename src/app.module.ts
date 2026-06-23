@@ -4,10 +4,11 @@ import { AuthModule } from './auth/auth.module';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { LibrosModule } from './libros/libros.module';
 import { ValoracionesModule } from './valoraciones/valoraciones.module';
-
+import { Usuario } from './usuarios/usuario.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
+      entities: [Usuario],
       type: 'mysql',
       host: process.env.DB_HOST,
       port: Number(process.env.DB_PORT),
